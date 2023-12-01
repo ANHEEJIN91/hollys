@@ -165,7 +165,9 @@
     .popup .container>button::after{
       transform:translate(-50%,-50%) rotate(-45deg);
     }
-    .main-banner h2,.q-nav h2{
+    .main-banner h2,
+    .q-nav h2,
+    .banner h2{
       display:none;
     }
     .q-nav{
@@ -190,6 +192,100 @@
       orphans:1;
       width:30px;
       height:45px;
+    }
+    .banner li{
+      margin-bottom:5px;
+    }
+    .banner h3,.banner p{
+      display:none;
+    }
+    .notice{
+      padding:20px 0;
+    }
+    .notice .container{
+      padding:0 10px;
+    }
+    .notice .row{
+      margin-bottom:20px;
+    }
+    .notice h2,.notice input:first-child{
+      float:left;
+    }
+    .notice .btn-more,.notice input:last-child{
+      float:right;
+    }
+    .notice h2{
+      font-weight:700;
+      color:var(--sub-color02);
+      text-transform:capitalize;
+    }
+    .notice .btn-more{
+      padding-right:10px;
+      font-weight:700;
+      font-size:0.8em;
+      color:var(--main-color);
+      background:url(./images/ico-arrow02.gif) no-repeat right 8px;
+      background-size:4px;
+    }
+    .notice input{
+      border:none;
+      color:var(--sub-color03);
+      background:transparent;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .notice input:first-child{
+      width:60%;
+    }
+    .notice input:last-child{
+      width:20%;
+      text-align:right;
+    }
+    .footer .row:nth-child(1){
+      border:1px solid var(--sub-color05);
+      border-left:none;
+      border-right:none;
+      padding:10px 0;
+    }
+    .footer .row:nth-child(1) div{
+      width:50%;
+      font-weight:700;
+      color:var(--sub-color02);
+      text-align:center;
+
+    }
+    .footer .row:nth-child(1) div:first-child{
+      float:left;
+      position:relative;
+    }
+    .footer .row:nth-child(1) div:first-child::after{
+      content:'';
+      display:block;
+      width:1px;
+      height:10px;
+      background:var(--sub-color05);
+      position:absolute;
+      right:0;
+      top:50%;
+      transform:translateY(-50%);
+    }
+    .footer .row:nth-child(1) div:last-child{
+      float:right;
+    }
+    .footer .row:nth-child(2){
+      padding:10px;
+      background:var(--sub-color06);
+      text-align:center;
+    }
+    .footer .row:nth-child(2) li{
+      display:inline-block;
+      padding:5px 20px;
+    }
+    .footer .row:nth-child(3){
+      padding:10px 10px 80px 10px;
+      background:var(--sub-color06);
+      font-size:0.6em;
     }
   </style>
 </head>
@@ -350,22 +446,24 @@
     </section>
     <section class="sec notice" id="notice">
       <div class="container">
-        <h2>notice</h2>
-        <div class="btn-more"><a href="#">more</a></div>
-        <form action="#">
-          <input type="text" value="[안내] 경찰관 할인 이용 매장 안내">
-          <input type="text" value="2023-10-17">
+        <div class="row clearfix">
+          <h2>notice</h2>
+          <div class="btn-more"><a href="#">more</a></div>
+        </div>
+        <form action="#" class="clearfix">
+          <input type="text" value="[안내] 경찰관 할인 이용 매장 안내" readonly disabled>
+          <input type="text" value="2023-10-17" readonly disabled>
         </form>
       </div>
     </section>
     <footer class="footer">
       <div class="container">
-        <div class="row">
+        <div class="row clearfix">
           <div><a href="#">가맹문의 및 절차</a></div>
           <div><a href="#">이벤트</a></div>
         </div>
         <div class="row">
-          <ul>
+          <ul class="clearfix">
             <li><a href="#">멤버십 로그인</a></li>
             <li><a href="#">멤버십 가입</a></li>
             <li><a href="#">고객센터</a></li>
@@ -378,7 +476,6 @@
             <li><a href="#">english</a></li>
             <li><a href="#">pc버전</a></li>
           </ul>
-        </div>
         </div>
         <div class="row">
           <address>
