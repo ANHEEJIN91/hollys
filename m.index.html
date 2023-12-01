@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
   <title>Hollys</title>
   <style>
     :root{
@@ -56,10 +57,12 @@
       background:url(./images/logo.png) no-repeat center;
       background-size:cover;
       text-indent:-999999px;
+      cursor:pointer;
     }
     .header .btn-nav{
       float:right;
       width:39px;
+      cursor:pointer;
     }
     #nav{
       display:none;
@@ -107,6 +110,7 @@
       text-align:center;
     }
     .popup{
+      display:none;
       position:fixed;
       left:50%;
       top:50%;
@@ -129,10 +133,12 @@
     }
     .popup .btn-container button:first-child{
       float:left;
+      background:var(--sub-color07);
     }
     .popup .btn-container button:last-child{
       float:right;
       font-weight:700;
+      background:var(--sub-color07);
     }
     .popup .container>button{
       position:absolute;
@@ -159,7 +165,32 @@
     .popup .container>button::after{
       transform:translate(-50%,-50%) rotate(-45deg);
     }
-
+    .main-banner h2,.q-nav h2{
+      display:none;
+    }
+    .q-nav{
+      padding:20px 0;
+    }
+    .q-nav .container{
+      padding:0 20px;
+    }
+    .q-nav ul li{
+      float:left;
+      display:flex;
+      flex-flow:column nowrap;
+      align-items:center;
+      width:25%;
+    }
+    .q-nav h3{
+      order:2;
+      color:var(--sub-color02);
+      text-transform:capitalize;
+    }
+    .q-nav .img-box{
+      orphans:1;
+      width:30px;
+      height:45px;
+    }
   </style>
 </head>
 <body>
@@ -265,7 +296,7 @@
     <section class="q-nav">
       <div class="container">
         <h2>주요 내용 바로가기</h2>
-        <ul>
+        <ul class="clearfix">
           <li>
             <h3><a href="#">hollys mall</a></h3>
             <div class="img-box"><a href="#"><img src="./images/ico-main-menu01.gif" alt="할리스몰 바로가기"></a></div>
@@ -369,9 +400,14 @@
 
   <script src="./js/jquery.min.js"></script>
   <script src="./js/jquery.cookie.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
   <script>
-      fnCookie();
+    tmp();
+    fnCookie();
+    $('h1').click(function(){
+      location.href='./m.index.html';
+    })
     $('#btn-chk02,#btn-close').click(function(){
       fnClose($('#popup'));
     });
@@ -380,32 +416,46 @@
       fnClose($('#popup'));
     });
     $('.btn-nav').click(function(){
-      $('#nav').stop().slideToggle();
+      $('#nav').stop().slideToggle(300,function(){
+        let navDisplay = $('#nav').css('display');
+        if(navDisplay == 'none'){
+          fnClose($('.sub-nav'));
+          font400($('.main-nav').children('li').children('a'));
+        };
+      });      
     })
     $('.main-nav').children('li').click(function(e){
       e.preventDefault();
-      $('.sub-nav').stop().hide();
-      $('.main-nav').children('li').children('a').css({
-        fontWeight:'400',
-      })
+      fnClose($('.sub-nav'));
       $(this).children('.sub-nav').stop().slideDown();
       $(this).children('a').css({
         fontWeight:'700',
       })
     })
+    
+    
+      
    
+    
+
+
 
 
     $.cookie('first-cookie', 'yes', { expires: 7, path: '/' });
-    console.log($.cookie('first-cookie'));
     $.removeCookie('first-cookie');
-    console.log($.cookie('first-cookie'));
 
+   
 
+    // 폰트400
+    function font400(el){
+      el.css({
+        fontWeight:'400',
+      })
+    }
 
     // 닫기함수
     function fnClose(el){
-      el.hide();
+      el.stop().hide();
     };
 
     // 쿠키함수
@@ -413,8 +463,26 @@
       let popupValue = $.cookie('popup');
       if(popupValue=='no'){
         fnClose($('#popup'));
+      }else{
+        $('#popup').stop().show();
       };
     };
+  
+    // 삭제할 함수
+    function tmp(){
+      $(".slider").bxSlider();
+      $('.bx-wrapper').css({
+        border:'none',
+        marginBottom:'0',
+      })
+      $('.bx-controls-direction').css({
+        display:'none',
+      })
+      $('.bx-pager').css({
+        bottom:'16px',
+      })    
+    }
+   
   </script>
 </body>
 </html>
