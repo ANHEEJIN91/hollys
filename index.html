@@ -43,7 +43,7 @@
     }
     .header{
       border-bottom:2px solid #ba000c;
-      padding-top:20px;
+      padding:20px 0 4px;
       position:relative;
       z-index:100;
     }
@@ -70,9 +70,6 @@
       height:60px;
       position:relative;
     }
-    /* .nav li:hover{
-      background:#ba000c;
-    } */
     .nav li .img-box{
       position:absolute;
       left:50%;
@@ -93,9 +90,6 @@
       text-align:center;
       transition:0.2  s 0.1s;
     }
-    /* .nav li:hover p{
-      color:#fff;
-    } */
     .sub-nav{
       display:none;
       position:absolute;
@@ -138,23 +132,27 @@
         $('.nav li').children('p').css({
           color:'#6f6f6f',
         });
+
+        let newImg = $(this).find('img').attr('src').replace('.png','-on.png');
+        $(this).find('img').attr('src',newImg);
+
         $(this).children('p').css({
           color:'#fff',
         });
         $('.sub-nav').slideDown(300);
-        let newImg = $(this).find('img').attr('src').replace('.png','-on.png');
-        $(this).find('img').attr('src',newImg);
       });
 
       $('.nav li').mouseleave(function(){
         $(this).css({
           background:'transparent',
         });
+
+        let newImg = $(this).find('img').attr('src').replace('-on.png','.png');
+        $(this).find('img').attr('src',newImg);
+
         $('.nav li').children('p').css({
           color:'#6f6f6f',
         });
-        let newImg = $(this).find('img').attr('src').replace('-on.png','.png');
-        $(this).find('img').attr('src',newImg);
       });
 
       $('.sub-nav').mouseleave(function(){
