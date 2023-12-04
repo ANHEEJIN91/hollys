@@ -119,6 +119,9 @@
     .sub-nav li li{
       margin-bottom:0.5em;
     }
+    .sub-nav li li:hover{
+      color:#fff;
+    }
 
 
 
@@ -128,8 +131,40 @@
   </style>
   <script>
     $(function(){
-      
-    })
+      $('.nav li').mouseenter(function(){
+        $(this).css({
+          background:'#ba000c',
+        });
+        $('.nav li').children('p').css({
+          color:'#6f6f6f',
+        });
+        $(this).children('p').css({
+          color:'#fff',
+        });
+        $('.sub-nav').slideDown(300);
+        let newImg = $(this).find('img').attr('src').replace('.png','-on.png');
+        $(this).find('img').attr('src',newImg);
+      });
+
+      $('.nav li').mouseleave(function(){
+        $(this).css({
+          background:'transparent',
+        });
+        $('.nav li').children('p').css({
+          color:'#6f6f6f',
+        });
+        let newImg = $(this).find('img').attr('src').replace('-on.png','.png');
+        $(this).find('img').attr('src',newImg);
+      });
+
+      $('.sub-nav').mouseleave(function(){
+        $(this).slideUp(300);
+        $('.nav p').css({
+          color:'transparent',
+        });
+      });
+    });
+    
   </script>
 </head>
 <body>
