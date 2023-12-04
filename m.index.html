@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/reset.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-  <title>Hollys</title>
+  <!-- 설명 / 제작자 / 날짜 / 키워드 -->
+  <!-- og -->
+  <!-- twitter card -->
+  <!-- favicon -->
+  <link rel="stylesheet" href="./css/reset.css">  
+  <title>할리스</title>
   <style>
     :root{
       --main-color:#b5121b;
@@ -13,15 +16,15 @@
       --sub-color02:#303030;
       --sub-color03:#666666;
       --sub-color04:#808080;
-      --sub-color05:#c9c9cb;
+      --sub-color05:#c9c9c9;
       --sub-color06:#f7f7f7;
       --sub-color07:#ffffff;
-      font-family: '맑은 고딕','돋음 보통',sans-serif;
+      font-family:'맑은 고딕','돋움 보통',sans-serif;
       font-weight:400;
       font-size:14px;
       color:var(--sub-color03);
-      line-height:1.5em;
-    }
+      line-height:1.5;      
+    }    
     #skip-menu a{
       position:fixed;
       left:0;
@@ -43,9 +46,10 @@
       position:relative;
     }
     .header{
+      position:relative;
+      z-index:10;
       height:44px;
       background:var(--main-color);
-      position:relative;
     }
     .header h1{
       position:absolute;
@@ -102,15 +106,18 @@
       position:fixed;
       left:10px;
       top:10px;
-      padding:4px 10px;
+      padding:4px 12px;
       border-radius:14px;
       background:var(--sub-color01);
       font-size:0.8em;
       color:var(--sub-color07);
       text-align:center;
     }
+
+
+
     .popup{
-      display:none;
+      display:none;      
       position:fixed;
       left:50%;
       top:50%;
@@ -127,8 +134,8 @@
     .popup .btn-container button{
       width:50%;
       border:none;
-      background:transparent;
       padding:16px;
+      background:transparent;
       text-align:center;
     }
     .popup .btn-container button:first-child{
@@ -159,17 +166,21 @@
       background:#000;
       position:absolute;
       left:50%;
-      top:50%;
+      top:50%;      
       transform:translate(-50%,-50%) rotate(45deg);
     }
     .popup .container>button::after{
       transform:translate(-50%,-50%) rotate(-45deg);
     }
-    .main-banner h2,
-    .q-nav h2,
-    .banner h2{
+    .main-banner{
+      position:relative;
+      z-index:1;
+    }
+    .main-banner h2,.q-nav h2,.banner h2{
       display:none;
     }
+   
+
     .q-nav{
       padding:20px 0;
     }
@@ -189,16 +200,18 @@
       text-transform:capitalize;
     }
     .q-nav .img-box{
-      orphans:1;
+      order:1;
       width:30px;
       height:45px;
     }
+
     .banner li{
       margin-bottom:5px;
     }
-    .banner h3,.banner p{
+    .banner h3,.banner h3+p{
       display:none;
     }
+
     .notice{
       padding:20px 0;
     }
@@ -206,7 +219,7 @@
       padding:0 10px;
     }
     .notice .row{
-      margin-bottom:20px;
+      margin-bottom:10px;
     }
     .notice h2,.notice input:first-child{
       float:left;
@@ -224,13 +237,13 @@
       font-weight:700;
       font-size:0.8em;
       color:var(--main-color);
-      background:url(./images/ico-arrow02.gif) no-repeat right 8px;
+      background:url(./images/ico-arrow02.gif) no-repeat right 6px;
       background-size:4px;
     }
     .notice input{
       border:none;
-      color:var(--sub-color03);
       background:transparent;
+      color:var(--sub-color03);
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
@@ -253,7 +266,6 @@
       font-weight:700;
       color:var(--sub-color02);
       text-align:center;
-
     }
     .footer .row:nth-child(1) div:first-child{
       float:left;
@@ -268,11 +280,12 @@
       position:absolute;
       right:0;
       top:50%;
-      transform:translateY(-50%);
+      transform: translateY(-50%);
     }
     .footer .row:nth-child(1) div:last-child{
       float:right;
     }
+
     .footer .row:nth-child(2){
       padding:10px;
       background:var(--sub-color06);
@@ -282,20 +295,99 @@
       display:inline-block;
       padding:5px 20px;
     }
-    .footer .row:nth-child(3){
+    .footer .row:nth-child(3){      
       padding:10px 10px 80px 10px;
       background:var(--sub-color06);
       font-size:0.6em;
     }
   </style>
+  <!-- 추가스타일 -->
+  <style>
+    .slider{
+      position:relative;
+      left:0;
+      top:0;
+      transform:translateX(0%);
+      transition:0.3s;
+    }
+    .slider .img-box{
+      float:left;
+    }
+    .slider-wrap{
+      position:relative;
+    }
+    .pagenation{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:16px;
+      display:flex;
+      justify-content:center;
+    }
+    .pagenation span{
+      width:8px;
+      height:8px;
+      margin:0 4px;
+      border-radius:4px;
+      background:var(--sub-color05);
+      text-indent:-99999px;
+    }
+    .pagenation span.active,
+    .pagenation span:hover{
+      background:var(--main-color);
+    }
+  </style>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/jquery.cookie.min.js"></script>
+    <script src="./js/myFunction.js"></script>
+    <script>  
+      $(document).ready(function(){
+        myObj.key01();
+        myObj.key02();
+        myObj.key03();
+        $('h1').click(function(){
+          let hrefVal = $(this).children('a').attr('href');      
+          fnLink(hrefVal);     
+        })
+        $('#btn-chk02,#btn-close').click(function(){
+          fnClose($('#popup'));
+        });
+        $('#btn-chk01').click(function(){
+          $.cookie('popup','no',{path:'/',expires:1});
+          fnClose($('#popup'));
+        });
+        $('.btn-nav').click(function(){
+          $('#nav').stop().slideToggle(300,callBack01);      
+        })
+        $('.main-nav').children('li').click(function(event){
+          event.preventDefault();
+          fnClose($('.sub-nav'));                 
+          $(this).children('.sub-nav').stop().slideDown();
+          $(this).children('a').css({
+            fontWeight:'700',
+          })
+        })
+        $(window).resize(function(){
+          fnSlider();
+        })
+        $('.pagenation span').click(function(){
+          resetActive($('.pagenation span'));
+          setActive($(this));
+          tlVal = $(this).text() * (-25);
+          $('.slider').css({
+            transform:`translateX(${tlVal}%)`,
+          });
+        })
+        myObj.key04();
+      })        
+    </script>
 </head>
 <body>
   <div id="skip-menu">
     <a href="#nav">메뉴리스트 바로가기</a>
     <a href="#main-banner">이벤트 바로가기</a>
-    <a href="#notice">게시판 바로가기</a>
-  </div>  
-
+    <a href="#notice">게시판 바로가기</a>    
+  </div>
   <section id="wrap">
     <header class="header">
       <div class="container clearfix">
@@ -316,13 +408,13 @@
               <a href="#">menu</a>
               <ul class="sub-nav">
                 <li><a href="#">coffee</a></li>
-                <li><a href="#">라떼,초콜릿,티</a></li>
-                <li><a href="#">할리치노,빙수</a></li>
-                <li><a href="#">스무디,주스</a></li>
+                <li><a href="#">라떼 · 초콜릿 · 티</a></li>
+                <li><a href="#">할리치노 · 빙수</a></li>
+                <li><a href="#">스무디 · 주스</a></li>
                 <li><a href="#">스파클링</a></li>
                 <li><a href="#">푸드</a></li>
-                <li><a href="#">MD 상품</a></li>
-                <li><a href="#">MD 식품</a></li>
+                <li><a href="#">md상품</a></li>
+                <li><a href="#">md상품</a></li>
               </ul>
             </li>
             <li>
@@ -337,7 +429,7 @@
               <a href="#">membership</a>
               <ul class="sub-nav">
                 <li><a href="#">스마트오더</a></li>
-                <li><a href="#">멤버십 해택</a></li>
+                <li><a href="#">멤버십 혜택</a></li>
               </ul>
             </li>
             <li>
@@ -359,14 +451,14 @@
                 <li><a href="#">hollys</a></li>
                 <li><a href="#">할리스 위치 및 연락처</a></li>
                 <li><a href="#">가맹문의 및 절차</a></li>
-                <li><a href="#">B2B 사업소개</a></li>
+                <li><a href="#">b2b 사업소개</a></li>
               </ul>
             </li>
           </ul>
         </nav>
         <div class="floating"><a href="#">가맹문의</a></div>
       </div>
-    </header>
+    </header>    
     <section class="sec popup" id="popup">
       <div class="container">
         <h2>11월의 특별한 선물</h2>
@@ -382,14 +474,14 @@
       <div class="container">
         <h2>이벤트 바로가기</h2>
         <div class="slider">
-          <div class="img-box"><a href="#"><img src="./images/img-main-Banner01.jpg" alt="Magical Winter Melody 음료 출시!"></a></div>
-          <div class="img-box"><a href="#"><img src="./images/img-main-Banner02.jpg" alt="마법같은 홀리데이 음료 출시!"></a></div>
-          <div class="img-box"><a href="#"><img src="./images/img-main-Banner03.jpg" alt="Have a Bread Day, 풍미 가득 베이커리 3종 출시!"></a></div>
-          <div class="img-box"><a href="#"><img src="./images/img-main-Banner04.jpg" alt="Time for Bubble Tea, 말랑 쫀득 펄 가득 버블티 출시!"></a></div>
+          <div class="img-box"><a href="#"><img src="./images/img-main-banner01.jpg" alt="Magical Winter Melody, 레몬 에플티!"></a></div>
+          <div class="img-box"><a href="#"><img src="./images/img-main-banner02.jpg" alt="Magical Winter Melody, 겨울라떼!"></a></div>
+          <div class="img-box"><a href="#"><img src="./images/img-main-banner03.jpg" alt="Magical Winter Melody, 풍미가득 베이커리!"></a></div>
+          <div class="img-box"><a href="#"><img src="./images/img-main-banner04.jpg" alt="Magical Winter Melody, 말랑 쫀득 버블티!"></a></div>
         </div>
       </div>
     </section>
-    <section class="q-nav">
+    <section class="sec q-nav">
       <div class="container">
         <h2>주요 내용 바로가기</h2>
         <ul class="clearfix">
@@ -422,14 +514,14 @@
             <div class="img-box"><a href="#"><img src="./images/img-banner01.jpg" alt="할리스 멤버십"></a></div>
           </li>
           <li>
-            <h3><a href="#">할리스 카드</a></h3>
+            <h3><a href="#">할리스카드</a></h3>
             <p>할리스카드로 쉽고 간편하게 소중한 사람들에게 마음을 전하세요.</p>
-            <div class="img-box"><a href="#"><img src="./images/img-banner02.jpg" alt="할리스 카드"></a></div>
+            <div class="img-box"><a href="#"><img src="./images/img-banner02.jpg" alt="할리스카드"></a></div>
           </li>
           <li>
-            <h3><a href="#">hollys B2B</a></h3>
-            <p>할리스 F&B의 20년의 커피 노하우를 기반으로 한 할리스 B2B사업을 소개합니다.</p>
-            <div class="img-box"><a href="#"><img src="./images/img-banner03.png" alt="할리스 B2B"></a></div>
+            <h3><a href="#">hollys b2b</a></h3>
+            <p>할리스 f&b의 20년의 커피 노하우를 기반으로 한 할리스 b2b 사업을 소개합니다.</p>
+            <div class="img-box"><a href="#"><img src="./images/img-banner03.png" alt="할리스 b2b"></a></div>
           </li>
           <li>
             <h3><a href="#">가맹문의</a></h3>
@@ -452,7 +544,7 @@
         </div>
         <form action="#" class="clearfix">
           <input type="text" value="[안내] 경찰관 할인 이용 매장 안내" readonly disabled>
-          <input type="text" value="2023-10-17" readonly disabled>
+          <input type="text" value="2023-10-17" readonly  disabled>
         </form>
       </div>
     </section>
@@ -472,14 +564,14 @@
             <li><a href="#">서비스 이용약관</a></li>
             <li><a href="#">멤버십 이용약관</a></li>
             <li><a href="#">할리스카드이용약관</a></li>
-            <li><a href="#">bi소개</a></li>
+            <li><a href="#">bi 소개</a></li>
             <li><a href="#">english</a></li>
             <li><a href="#">pc버전</a></li>
           </ul>
         </div>
         <div class="row">
           <address>
-            <strong>(주)케이지할리스에프앤비(대표자:이종현)</strong>
+            <strong>(주)케이지할리스에프앤비(대표:이종헌)</strong>
             <br><br>
             통신판매업 : 제2019-서울종로-0193호 대표전화 : 02-2188-7100 (가맹문의 : 02-6350-7229)
             <br>
@@ -487,99 +579,11 @@
             <br>
             주소 : 서울특별시 중구 통일로 92, 9층(순화동, 케이지타워)
             <br>
-            COPYRIGHT (C) KG HOLLYS F&B. All Rights Reserved
+            COPYRIGHT (C) KG HOLLYS F&B. All Rights Reserved.
           </address>
         </div>
       </div>
     </footer>
   </section>
-
-
-  <script src="./js/jquery.min.js"></script>
-  <script src="./js/jquery.cookie.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-
-  <script>
-    tmp();
-    fnCookie();
-    $('h1').click(function(){
-      location.href='./m.index.html';
-    })
-    $('#btn-chk02,#btn-close').click(function(){
-      fnClose($('#popup'));
-    });
-    $('#btn-chk01').click(function(){
-      $.cookie('popup','no',{path:'/',expires:1});
-      fnClose($('#popup'));
-    });
-    $('.btn-nav').click(function(){
-      $('#nav').stop().slideToggle(300,function(){
-        let navDisplay = $('#nav').css('display');
-        if(navDisplay == 'none'){
-          fnClose($('.sub-nav'));
-          font400($('.main-nav').children('li').children('a'));
-        };
-      });      
-    })
-    $('.main-nav').children('li').click(function(e){
-      e.preventDefault();
-      fnClose($('.sub-nav'));
-      $(this).children('.sub-nav').stop().slideDown();
-      $(this).children('a').css({
-        fontWeight:'700',
-      })
-    })
-    
-    
-      
-   
-    
-
-
-
-
-    $.cookie('first-cookie', 'yes', { expires: 7, path: '/' });
-    $.removeCookie('first-cookie');
-
-   
-
-    // 폰트400
-    function font400(el){
-      el.css({
-        fontWeight:'400',
-      })
-    }
-
-    // 닫기함수
-    function fnClose(el){
-      el.stop().hide();
-    };
-
-    // 쿠키함수
-    function fnCookie(){
-      let popupValue = $.cookie('popup');
-      if(popupValue=='no'){
-        fnClose($('#popup'));
-      }else{
-        $('#popup').stop().show();
-      };
-    };
-  
-    // 삭제할 함수
-    function tmp(){
-      $(".slider").bxSlider();
-      $('.bx-wrapper').css({
-        border:'none',
-        marginBottom:'0',
-      })
-      $('.bx-controls-direction').css({
-        display:'none',
-      })
-      $('.bx-pager').css({
-        bottom:'16px',
-      })    
-    }
-   
-  </script>
 </body>
 </html>
