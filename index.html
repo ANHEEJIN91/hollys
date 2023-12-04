@@ -126,43 +126,40 @@
   <script>
     $(function(){
       $('.nav li').mouseenter(function(){
-        $(this).css({
-          background:'#ba000c',
-        });
-        $('.nav li').children('p').css({
-          color:'#6f6f6f',
-        });
-
-        let newImg = $(this).find('img').attr('src').replace('.png','-on.png');
-        $(this).find('img').attr('src',newImg);
-
-        $(this).children('p').css({
-          color:'#fff',
-        });
+        backColor($(this),'#ba000c');
+        changImg($(this),'.png','-on.png');
+        setColor($('.nav li').children('p'),'#6f6f6f');
+        setColor($(this).children('p'),'#ffffff');
         $('.sub-nav').slideDown(300);
       });
 
       $('.nav li').mouseleave(function(){
-        $(this).css({
-          background:'transparent',
-        });
-
-        let newImg = $(this).find('img').attr('src').replace('-on.png','.png');
-        $(this).find('img').attr('src',newImg);
-
-        $('.nav li').children('p').css({
-          color:'#6f6f6f',
-        });
+        backColor($(this),'transparent');
+        changImg($(this),'-on.png','.png');
+        setColor($('.nav li').children('p'),'#6f6f6f');
       });
 
       $('.sub-nav').mouseleave(function(){
         $(this).slideUp(300);
-        $('.nav p').css({
-          color:'transparent',
-        });
+        setColor($('.nav p'),'transparent');
       });
     });
     
+    function backColor(self,color){
+      self.css({
+        background:color,
+      })
+    }
+    function changImg(self,oldTxt,newTxt){
+      let newImg = self.find('img').attr('src').replace(oldTxt,newTxt);
+      self.find('img').attr('src',newImg);
+
+    }
+    function setColor(el,color){
+      el.css({
+        color:color,
+      });
+    }
   </script>
 </head>
 <body>
