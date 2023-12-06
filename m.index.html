@@ -7,7 +7,8 @@
   <!-- og -->
   <!-- twitter card -->
   <!-- favicon -->
-  <link rel="stylesheet" href="./css/reset.css">  
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/popup.css">  
   <title>할리스</title>
   <style>
     :root{
@@ -113,66 +114,6 @@
       color:var(--sub-color07);
       text-align:center;
     }
-
-
-
-    .popup{
-      display:none;      
-      position:fixed;
-      left:50%;
-      top:50%;
-      z-index:100;
-      transform:translate(-50%,-50%);
-      width:360px;
-      box-shadow:0 0 3px rgba(0,0,0,0.6);
-    }
-    .popup .container{
-      position:relative;
-    }
-    .popup h2{
-      display:none;
-    }
-    .popup .btn-container button{
-      width:50%;
-      border:none;
-      padding:16px;
-      background:transparent;
-      text-align:center;
-    }
-    .popup .btn-container button:first-child{
-      float:left;
-      background:var(--sub-color07);
-    }
-    .popup .btn-container button:last-child{
-      float:right;
-      font-weight:700;
-      background:var(--sub-color07);
-    }
-    .popup .container>button{
-      position:absolute;
-      right:20px;
-      top:20px;
-      width:16px;
-      height:16px;
-      border:none;
-      background:transparent;
-      font-size:0;
-    }
-    .popup .container>button::before,
-    .popup .container>button::after{
-      content:'';
-      display:block;
-      width:17px;
-      height:1px;
-      background:#000;
-      position:absolute;
-      left:50%;
-      top:50%;      
-      transform:translate(-50%,-50%) rotate(45deg);
-    }
-    .popup .container>button::after{
-      transform:translate(-50%,-50%) rotate(-45deg);
-    }
     .main-banner{
       position:relative;
       z-index:1;
@@ -180,8 +121,6 @@
     .main-banner h2,.q-nav h2,.banner h2{
       display:none;
     }
-   
-
     .q-nav{
       padding:20px 0;
     }
@@ -338,50 +277,50 @@
       background:var(--main-color);
     }
   </style>
-    <script src="./js/jquery.min.js"></script>
-    <script src="./js/jquery.cookie.min.js"></script>
-    <script src="./js/myFunction.js"></script>
-    <script>  
-      $(document).ready(function(){
-        myObj.key01();
-        myObj.key02();
-        myObj.key03();
-        $('h1').click(function(){
-          let hrefVal = $(this).children('a').attr('href');      
-          fnLink(hrefVal);     
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/jquery.cookie.min.js"></script>
+  <script src="./js/myFunction.js"></script>
+  <script src="./js/popup.js"></script>
+  <script>  
+    $(document).ready(function(){      
+      let osString = navigator.userAgent;
+      if(osString.indexOf('Window')>=0){
+        // 윈도우환경
+        location.href='https://pam7461.github.io/hollys/index.html';
+      }
+      myObj.key01();
+      myObj.key02();
+      myObj.key03();
+      $('h1').click(function(){
+        let hrefVal = $(this).children('a').attr('href');      
+        fnLink(hrefVal);     
+      })
+      
+      $('.btn-nav').click(function(){
+        $('#nav').stop().slideToggle(300,callBack01);      
+      })
+      $('.main-nav').children('li').click(function(event){
+        event.preventDefault();
+        fnClose($('.sub-nav'));                 
+        $(this).children('.sub-nav').stop().slideDown();
+        $(this).children('a').css({
+          fontWeight:'700',
         })
-        $('#btn-chk02,#btn-close').click(function(){
-          fnClose($('#popup'));
+      })
+      $(window).resize(function(){
+        fnSlider();
+      })
+      $('.pagenation span').click(function(){
+        resetActive($('.pagenation span'));
+        setActive($(this));
+        tlVal = $(this).text() * (-25);
+        $('.slider').css({
+          transform:`translateX(${tlVal}%)`,
         });
-        $('#btn-chk01').click(function(){
-          $.cookie('popup','no',{path:'/',expires:1});
-          fnClose($('#popup'));
-        });
-        $('.btn-nav').click(function(){
-          $('#nav').stop().slideToggle(300,callBack01);      
-        })
-        $('.main-nav').children('li').click(function(event){
-          event.preventDefault();
-          fnClose($('.sub-nav'));                 
-          $(this).children('.sub-nav').stop().slideDown();
-          $(this).children('a').css({
-            fontWeight:'700',
-          })
-        })
-        $(window).resize(function(){
-          fnSlider();
-        })
-        $('.pagenation span').click(function(){
-          resetActive($('.pagenation span'));
-          setActive($(this));
-          tlVal = $(this).text() * (-25);
-          $('.slider').css({
-            transform:`translateX(${tlVal}%)`,
-          });
-        })
-        myObj.key04();
-      })        
-    </script>
+      })
+      myObj.key04();
+    })        
+  </script>
 </head>
 <body>
   <div id="skip-menu">
@@ -565,9 +504,9 @@
             <li><a href="#">서비스 이용약관</a></li>
             <li><a href="#">멤버십 이용약관</a></li>
             <li><a href="#">할리스카드이용약관</a></li>
-            <li><a href="#">BI 소개</a></li>
-            <li><a href="#">English</a></li>
-            <li><a href="#">PC버전</a></li>
+            <li><a href="#">bi 소개</a></li>
+            <li><a href="#">english</a></li>
+            <li><a href="#">pc버전</a></li>
           </ul>
         </div>
         <div class="row">
