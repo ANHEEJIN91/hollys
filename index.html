@@ -234,8 +234,7 @@
     }
     .notice .hollys-b2b-solution>.img-box{
       width:170px;
-    }
-    
+    }    
     .notice .news>.img-box{
       width:87px;
     }
@@ -265,6 +264,72 @@
     .notice .etc li .img-box{
       width:32px;
       margin:0 auto 10px;
+    }
+    .b2b-va,.news-va{
+      display:flex;
+      align-items:center;
+    }
+    .news-va{
+      display:flex;
+      align-items:flex-start;
+    }
+    .b2b-va::before,.news-va::after{
+      content:'';
+      display:inline-block;
+      width:15px;
+      height:15px;
+      background:url('./images/d-images/ico-arrow.gif') no-repeat center;
+      background-size:contain;
+    }
+    .b2b-va::before{
+      margin-right:10px;
+    }
+    .news-va::after{
+      margin-left:10px;
+    }
+    .notice-wrap{
+      padding:20px 20px 0 0;
+    }
+    .line .art{
+      height:2px;
+      background:#ba000c;
+    }
+    .hollys-live{
+      padding-bottom:50px;
+    }
+    .hollys-live .img-box{
+      margin-right:4px;
+    }
+    .footer{
+      padding:40px 0;
+      background:#ba000c;
+      font-size:0.9em;
+      color:#ffffff;
+      line-height:1.2;
+    }
+    .footer-nav li{
+      margin-right:21px;
+      position:relative;
+    }
+    .footer-nav li::after{
+      content:'';
+      display:block;
+      width:1px;
+      height:10px;
+      background:#fff;
+      position:absolute;
+      right:-10px;
+      top:50%;
+      transform:translateY(-50%);
+    }
+    .footer-nav li:last-child:after{
+      display:none;
+    }
+    .footer-nav li a:hover{
+      text-decoration:underline;
+    }
+    address{
+      filter:opacity(0.8);
     }
 
   </style>
@@ -560,12 +625,12 @@
             <div class="img-box"><a href="#"><img src="./images/d-images/tit-B2B.gif" alt="솔루션"></a></div>
             <ul class="notice-wrap">
               <li><p><a href="#">할리스 F&B는 20년의 커피 노하우를 기반으로 한 할리스 B2B 솔루션을 소개합니다.</a></p></li>
-              <li><p><a href="#">바로가기</a></p></li>
+              <li><p><a href="#" class="b2b-va"><span>바로가기</span></a></p></li>
             </ul>
           </article>
           <article class="art news f-left">
             <h4>뉴스 게시판</h4>
-            <div class="img-box"><a href="#"><img src="./images/d-images/tit-news.gif" alt="뉴스"></a></div>
+            <div class="img-box"><a href="#" class="news-va"><span><img src="./images/d-images/tit-news.gif" alt="뉴스"></a></span></div>
             <ul class="notice-wrap">
               <li class="clearfix">
                 <div class="notice-tit f-left"><a href="#">[공고] 제3자 배정 유상증자 신주발행 공고</a></div>
@@ -600,11 +665,36 @@
         </div>
         <div class="row hollys-live">
           <h3>할리스 라이브</h3>
-          <article class="art"></article>
+          <article class="art clearfix">
+            <div class="img-box f-left"><img src="./images/d-images/sns-tit.gif" alt="할리스 라이브"></div>
+            <div class="img-box f-left"><a href="#"><img src="./images/d-images/ico-facebook.gif" alt="페이스북"></a></div>
+            <div class="img-box f-left"><a href="#"><img src="./images/d-images/ico-instagram.gif" alt="인스타그램"></a></div>
+          </article>
         </div>
       </div>
     </main>
-    <footer class="footer"></footer>
+    <footer class="footer">
+      <div class="container">
+        <nav class="footer-nav">
+          <ul class="clearfix">
+            <li class="f-left"><a href="#"><strong>개인정보처리방침</strong></a></li>
+            <li class="f-left"><a href="#">서비스이용약관</a></li>
+            <li class="f-left"><a href="#">멤버십이용약관</a></li>
+            <li class="f-left"><a href="#">할리스카드이용약관</a></li>
+            <li class="f-left"><a href="#">고객문의</a></li>
+            <li class="f-left"><a href="#">고객설문</a></li>
+            <li class="f-left"><a href="#">사이트맵</a></li>
+            <li class="f-left"><a href="#">BI 소개</a></li>                   
+          </ul>
+        </nav>
+        <br><br>
+        <address>
+          법인명: (주) 케이지할리스에프앤비 대표자: 이종현 사업자등록번호 211-87-61044 통신판매업: 제2019-서울종로-0193호<br>
+          주소 : 서울특별시 중구 통일로 92, 9층(순화동, 케이지타워) 대표전화 : 02-2188-7100 (가맹문의 : 02-6350-7229)<br>
+          COPYRIGHT (C) KG HOLLYS F&B. All Rights Reserved.
+        </address>
+      </div>
+    </footer>
   </section>
 </body>
 </html>
