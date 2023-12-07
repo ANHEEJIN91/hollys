@@ -4,11 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/reset.css"> 
   <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="./css/swiper-bundle.min.css"> 
   <title>메가MGC커피</title>
   <style>
+    :root{
+      --main-color:#fdd000;
+      font-family:'Noto Sans KR';
+      font-weight:500;
+      font-size:16px;
+      color:#333;
+      line-height:1.2;
+    }
+    .container{
+      max-width:1280px;
+      margin:0 auto;
+    }
+    .container-full{
+      max-width:100%;
+    }
+    .grid-container4{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+    }
+    .grid-container8{
+      display:grid;
+      grid-template-columns:repeat(8,1fr);
+      gap:20px;
+    }
+    .grid-container12{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:20px;
+    }
+
+
+
+
     #skip-menu a{
       position:fixed;
       left:50%;
@@ -16,12 +50,12 @@
       z-index:2000;
       transform:translate(-50%,-110%);
       padding:10px;
-      background:#000;
+      background:black;
       font-size:32px;
-      color:#fff;
+      color:white;
     }
     #skip-menu a:focus{
-      transform: translate(-50%,0);
+      transform:translate(-50%,0);
     }
     .header{
       position:fixed;
@@ -29,20 +63,15 @@
       right:0;
       top:0;
       z-index:1000;
-      height:100px;
       background:transparent;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      font-size:100px;
-      color:red;
+      
       transition:0.3s;
     }
     .header.active{
       background:#fff;
     }
-    .sec-swiper{
-      height:100vh;
+    .sec-swiper {    
+      height: 100vh;
     }
     .sec{
       display:flex;
@@ -50,12 +79,21 @@
       align-items:center;
       font-size:100px;
     }
-    .sec01{background:lightblue;}
-    .sec02{background:lightcoral;}
-    .sec03{background:lightgreen;}
-    .sec04{background:lightpink;}
-    .sec05{background:lightsalmon;}
-
+    .sec01{
+      background:lightblue;
+    }
+    .sec02{
+      background:lightcoral;
+    }
+    .sec03{
+      background:lightgoldenrodyellow;
+    }
+    .sec04{
+      background:lightgreen;
+    }
+    .sec05{
+      background:lightsalmon;
+    }
     .sec-swiper-pagination{
       right:auto !important;
       left:40px !important;
@@ -66,7 +104,7 @@
       font-size:0.8em;
     }
     .sec-swiper-pagination .swiper-pagination-bullet{
-      width:100px;
+      width:200px;
       height:20px;
       border-radius:0;
       background:transparent;
@@ -88,51 +126,64 @@
     .sec-swiper-pagination .swiper-pagination-bullet-active::before{
       display:block;
     }
+
     .footer{
       height:100px;
-      background:#000;
+      background:black;
     }
   </style>
 </head>
 <body>
   <div id="skip-menu"><a href="#">본문바로가기</a></div>
   <section id="wrap">
-    <header class="header">HEADER</header>
+    <header class="header">
+      <div class="container grid-container12">
+        <h1>
+          <div class="main-tit"><a href="./index.html">메가MGC커피</a></div>
+          <div class="img-box"><a href="./index.html"><img src="./images/logo-b.png" alt="메가BGC커피 로고"></a></div>
+        </h1>
+        <nav></nav>
+        <div class="sns"></div>
+        <div class="btn-nav"></div>
+      </div>
+    </header>
     <!-- Slider main container -->
     <div class="swiper sec-swiper">
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper sec-swiper-wrapper">
         <!-- Slides -->
         <section class="sec sec01 main swiper-slide">
-        <div class="container">
-          <h2>MAIN</h2>
-        </div>  
+          <div class="container container-full">
+            <h2>MAIN</h2>
+          </div>          
         </section>
         <section class="sec sec02 menu swiper-slide">
-        <div class="container">
-          <h2>MENU</h2>
-        </div>  
+          <div class="container container-full">
+            <h2>MENU</h2>
+          </div>          
         </section>
         <section class="sec sec03 franchise swiper-slide">
-        <div class="container">
-          <h2>FRANCHISE</h2>
-        </div>  
+          <div class="container">
+            <h2>FRANCHISE</h2>
+          </div>          
         </section>
         <section class="sec sec04 mega swiper-slide">
-        <div class="container">
-          <h2>MEGA</h2>
-        </div>  
+          <div class="container container-full">
+            <h2>MEGA</h2>
+          </div>          
         </section>
         <section class="sec sec05 event swiper-slide">
-        <div class="container">
-          <h2>EVENT</h2>
-        </div>  
+          <div class="container">
+            <h2>EVENT</h2>
+          </div>          
         </section>
       </div>
       <!-- If we need pagination -->
-      <div class="sec-swiper-pagination swiper-pagination"></div>
+      <div class="sec-swiper-pagination swiper-pagination"></div>      
     </div>
-    <footer class="footer"></footer>
+    <footer class="footer">
+      <div class="container"></div>
+    </footer>
   </section>
 
   <script src="./js/jquery.min.js"></script>
@@ -140,29 +191,28 @@
   <script src="./js/my-function.js"></script>
   <script src="./js/swiper-bundle.min.js"></script>
   <script>
-    //-----------섹션 스와이프 시작-----------
+    // --------- 섹션 스와이퍼 시작 -----------
       //섹션 슬라이드 초기화
-    const secSwiper = new Swiper('.sec-swiper', {
-      //섹션 스와이퍼
-      direction:'vertical',
+    const secSwiper = new Swiper('.sec-swiper', {      
+      direction: 'vertical',
       mousewheel:true,
       speed:1000,
       pagination: {
-        el:'.sec-swiper-pagination',
+        el: '.sec-swiper-pagination',
         clickable:true,
       },
     });
       //섹션 슬라이드 마지막 섹션 휠 잠금
     secSwiper.on('reachEnd',function(){
       secSwiper.mousewheel.disable();
-    });
+    })
       //섹션 슬라이드 휠 방향에 따른 휠 잠금 방향
-    window.onwheel = function(e){
+    window.onwheel = function(e){      
       if($('.sec05').hasClass('swiper-slide-active')){
         if(e.deltaY>=0){
           secSwiper.mousewheel.disable();
         }else{
-          secSwiper.mousewheel.enable();   
+          secSwiper.mousewheel.enable();
         }
       }
     }
@@ -173,18 +223,16 @@
       }else{
         setActive($('.header'));
       }
-    })
+    })      
       //페이지네이션 생성 및 내용
     $('.sec-swiper-pagination .swiper-pagination-bullet').append('<span class="page-txt"></span>');
     for(let idx=0;idx<=$('.sec').length-1;idx++){
       $('.page-txt').eq(idx).text($('.sec h2').eq(idx).text());
-    }
+    }    
+    // ---------- 섹션 스와이프 끝 ------------
 
 
-
-    //-----------섹션 스와이프 끝-----------
-
-
+    
 
 
     
